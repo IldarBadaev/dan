@@ -3,13 +3,15 @@ sys.path.append('system/catalog/classes')
 from classes.Catalog import Catalog
 
 
-def cat_list(SITE):
-    print('FUNCTION -> system_> calalog -> cat -> cat_list')
+def sec_list(SITE):
+    print('FUNCTION -> system_> calalog -> cat -> sec_list')
 
-    SITE.addHeadFile('/templates/system/catalog/cat/cat.js')
+    SITE.addHeadFile('/templates/system/catalog/cat/sec.js')
+    CATALOG = Catalog(SITE)
+    catalog = CATALOG.getItem(SITE.p[3], 'name')
 
     CATALOG = Catalog(SITE)
-    rows = CATALOG.getItems()
+    rows = CATALOG.getSections(SITE.p[3])
 
     row_out = ''
     i = 1
@@ -42,7 +44,7 @@ def cat_list(SITE):
         ];
         CONTEXTMENU.add("contextmenu_ico", contextmenu_catalog, "left");
         }})</script>
-        <h1>Каталоги</h1>
+        <h1>Разделы каталога { catalog['name'] }</h1>
         <div class="breadcrumbs">
             <a href="/system/"><svg class="home"><use xlink:href="/templates/system/svg/sprite.svg#home"></use></svg></a> 
             <svg><use xlink:href="/templates/system/svg/sprite.svg#arrow_right_1"></use></svg>
@@ -51,7 +53,7 @@ def cat_list(SITE):
         <div class="flex_row_start">
             <a href="/system/catalog/cat/add" target="blank" class="ico_rectangle_container">
                 <svg><use xlink:href="/templates/system/svg/sprite.svg#folder_add"></use></svg>
-                <div class="ico_rectangle_text">Добавить каталог</div>
+                <div class="ico_rectangle_text">Добавить раздел</div>
             </a>
             <a href="/system/catalod/item/add" target="blank" class="ico_rectangle_container">
                 <svg><use xlink:href="/templates/system/svg/sprite.svg#paper_add"></use></svg>

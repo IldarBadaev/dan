@@ -28,14 +28,16 @@ async def ws(request):
 async def system_r(request):
     # Админка
     SITE = site(request)
-    print('************************************')
 
     SITE.post = await request.post()  # Ждём получение файлов методом POST
-    system.router(SITE)
+    r = system.router(SITE)
+
+    if r and 'redirect' in r:
+        return web.HTTPFound('/system/catalog/cat')
 
     auth = 1
 
-    return {'AUTH': auth, 'content': SITE.content}
+    return {'AUTH': auth, 'content': SITE.content, 'head': SITE.getHead()}
 
 
 async def edit(request):
@@ -49,8 +51,8 @@ async def edit(request):
 def site(request):
     con = pymysql.connect(
         host='localhost',
-        user='dan',
-        password='LpVENmy9h5lcIMjs',
+        user='root',
+        password='',
         db='dan_py',
         charset='utf8mb4',
         autocommit=True,

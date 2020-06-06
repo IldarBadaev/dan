@@ -1,3 +1,6 @@
+--
+--`components`
+--
 CREATE TABLE IF NOT EXISTS `component` (
 `id` int(10) unsigned NOT NULL,
   `component` varchar(255) NOT NULL,
@@ -7,14 +10,31 @@ CREATE TABLE IF NOT EXISTS `component` (
   `ordering` int NOT NULL
 ) AUTO_INCREMENT=1;
 
---
--- Индексы таблицы `components`
---
 ALTER TABLE `component`
- ADD PRIMARY KEY (`id`), ADD KEY `type` (`type`);
+ ADD PRIMARY KEY (`id`), ADD KEY `url` (`url`);
 
---
--- AUTO_INCREMENT для таблицы `components`
---
 ALTER TABLE `component`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+
+
+--
+--`sections`
+--
+CREATE TABLE `sections` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `catalog_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `serialized` longtext NOT NULL,
+  `date` datetime NOT NULL,
+  `status` int(3) NOT NULL,
+  `ordering` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `sections`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `catalog_id` (`catalog_id`);
+
+ALTER TABLE `sections`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;

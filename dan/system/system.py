@@ -1,7 +1,9 @@
 from aiohttp import web
 import sys
+sys.path.append('system')
 sys.path.append('system/catalog')
 from catalog import catalog
+from mainpage import mainpage
 
 def router(SITE):
     print('SYSTEM - router')
@@ -16,6 +18,7 @@ def router(SITE):
 
         # Вызов функций по ключу
         functions = {
+            '': mainpage,
             'catalog': catalog
             # 'users': users,
             # 'help': help
@@ -26,4 +29,4 @@ def router(SITE):
             raise web.HTTPNotFound()
 
         # Вызов функции
-        functions[SITE.p[0]](SITE)
+        return functions[SITE.p[0]](SITE)

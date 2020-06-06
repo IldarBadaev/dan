@@ -1,14 +1,22 @@
+from classes.Catalog import Catalog
+import sys
+sys.path.append('system/catalog/classes')
+
+
 def edit(SITE):
     print('FUNCTION -> system_> calalog -> cat -> edit')
 
+    CATALOG = Catalog(SITE)
+
     if SITE.p[2] == 'edit':
+        catalog = CATALOG.getItem(SITE.p[3])
         title = 'Редактировать каталог'
-        action = 'update'
-        catalog = {'title': '', 'url': ''}
+        action = 'update/' + SITE.p[3]
     else:
         title = 'Добавить  каталог'
         action = 'insert'
-        catalog = {'title': '', 'url': ''}
+        ordering = CATALOG.getMaxOrdering() + 1
+        catalog = {'name': '', 'url': '', 'ordering': ordering}
 
     SITE.content += '''<div class="bg_gray">
         <h1>''' + title + '''</h1>
@@ -24,7 +32,7 @@ def edit(SITE):
 				<div class="flex_row p_5_20">
 					<div class="tc_item_l">Наименование</div>
 					<div class="tc_item_r flex_grow">
-						<input class="input" name="name" placeholder="Интернет магазин" required value="''' + catalog['title'] + '''">
+						<input class="input" name="name" placeholder="Интернет магазин" required value="''' + catalog['name'] + '''">
 					</div>
 				</div>
 				<div class="flex_row p_5_20">
@@ -32,6 +40,12 @@ def edit(SITE):
 					<div class="tc_item_r flex_grow">
 						<input id="url" class="input" name="url" placeholder="catalog" required value="''' + catalog['url'] + '''">
 						<div id="url_status"></div>
+					</div>
+				</div>
+				<div class="flex_row p_5_20">
+					<div class="tc_item_l">URL адрес каталога</div>
+					<div class="tc_item_r flex_grow">
+						<input class="input" name="ordering" type="number" value="''' + str(catalog['ordering']) + '''">
 					</div>
 				</div>
 				<div class="flex_row p_5_20">

@@ -24,4 +24,4 @@ def catalog(SITE):
         raise web.HTTPNotFound()
 
     # Вызов функции
-    functions[SITE.p[1]](SITE)
+    return functions[SITE.p[1]](SITE)

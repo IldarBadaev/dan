@@ -32,63 +32,63 @@
 }
 
 .contextmenu_add {
-	background			:url('/lib/contextmenu/images/add.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/add.png') no-repeat left center;
 }
 
 .contextmenu_copy {
-	background			:url('/lib/contextmenu/images/copy.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/copy.png') no-repeat left center;
 }
 
 .contextmenu_edit {
-	background			:url('/lib/contextmenu/images/edit.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/edit.png') no-repeat left center;
 }
 
 .contextmenu_help {
-	background			:url('/lib/contextmenu/images/help.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/help.png') no-repeat left center;
 }
 
 .contextmenu_up {
-	background			:url('/lib/contextmenu/images/up.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/up.png') no-repeat left center;
 }
 
 .contextmenu_down {
-	background			:url('/lib/contextmenu/images/down.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/down.png') no-repeat left center;
 }
 
 .contextmenu_pub {
-	background			:url('/lib/contextmenu/images/pub.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/pub.png') no-repeat left center;
 }
 
 .contextmenu_unpub {
-	background			:url('/lib/contextmenu/images/unpub.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/unpub.png') no-repeat left center;
 }
 
 .contextmenu_block {
-	background			:url('/lib/contextmenu/images/block.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/block.png') no-repeat left center;
 }
 
 .contextmenu_unblock {
-	background			:url('/lib/contextmenu/images/unblock.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/unblock.png') no-repeat left center;
 }
 
 .contextmenu_tools{
-	background			:url('/lib/contextmenu/images/tools.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/tools.png') no-repeat left center;
 }
 
 .contextmenu_orders{
-	background			:url('/lib/contextmenu/images/orders.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/orders.png') no-repeat left center;
 }
 
 .contextmenu_import {
-	background			:url('/lib/contextmenu/images/import.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/import.png') no-repeat left center;
 }
 
 .contextmenu_export {
-	background			:url('/lib/contextmenu/images/export.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/export.png') no-repeat left center;
 }
 
 .contextmenu_delete{
-	background			:url('/lib/contextmenu/images/delete.png') no-repeat left center;
+	background			:url('/templates/lib/contextmenu/images/delete.png') no-repeat left center;
 }
 
 
