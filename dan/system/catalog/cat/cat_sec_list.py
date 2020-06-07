@@ -1,22 +1,23 @@
 import sys
 sys.path.append('system/catalog/classes')
 from classes.Catalog import Catalog
+from classes.Section import Section
 
-
-def sec_list(SITE):
+def cat_sec_list(SITE):
     print('FUNCTION -> system_> calalog -> cat -> sec_list')
+    catalog_id = SITE.p[2]
 
     SITE.addHeadFile('/templates/system/catalog/cat/sec.js')
     CATALOG = Catalog(SITE)
-    catalog = CATALOG.getItem(SITE.p[3], 'name')
+    catalog = CATALOG.getItem(catalog_id)
+    SECTION = Section(SITE)
 
-    CATALOG = Catalog(SITE)
-    rows = CATALOG.getSections(SITE.p[3])
-
+    rows = SECTION.tree(catalog_id)
     row_out = ''
     i = 1
     if (rows):
         for row in rows:
+            level = '&nbsp;-&nbsp;' * row['level']
             row_out += f''' <tr>
                 <td>{ i }</td>
                 <td>
@@ -27,7 +28,7 @@ def sec_list(SITE):
                     </div>
                 </td>
                 <td>
-                    <a href="/system/catalog/cat/{ row['id'] }">{ row['name'] }</a>
+                    <a href="/system/catalog/cat/{ row['id'] }">{ level }{ row['name'] }</a>
                 </td>
             </tr>
             '''
@@ -36,11 +37,12 @@ def sec_list(SITE):
     SITE.content += f'''<div class="bg_gray">
         <script>window.addEventListener("DOMContentLoaded", function(){{
         var contextmenu_catalog = [
-            ["system/catalog/cat/edit", "contextmenu_edit", "Редактировать каталог"],
-            ["system/catalog/cat/settings_edit", "contextmenu_tools", "Настройки"],	
-            ["system/catalog/cat/up", "contextmenu_up", "Вверх"],
-            ["system/catalog/cat/down", "contextmenu_down", "Вниз"],
-            ["#SYSTEM.cat.delete_modal", "contextmenu_delete", "Удалить каталог"]
+            ["system/catalog/section/edit", "contextmenu_edit", "Редактировать каталог"],
+            ["system/catalog/section/up", "contextmenu_up", "Вверх"],
+            ["system/catalog/section/down", "contextmenu_down", "Вниз"],
+            ["system/catalog/section/pub", "contextmenu_pub", "Опубликовать"],
+            ["system/catalog/section/unpub", "contextmenu_down", "Скрыть"],
+            ["#SYSTEM.section.delete_modal", "contextmenu_delete", "Удалить раздел"]
         ];
         CONTEXTMENU.add("contextmenu_ico", contextmenu_catalog, "left");
         }})</script>
@@ -48,18 +50,18 @@ def sec_list(SITE):
         <div class="breadcrumbs">
             <a href="/system/"><svg class="home"><use xlink:href="/templates/system/svg/sprite.svg#home"></use></svg></a> 
             <svg><use xlink:href="/templates/system/svg/sprite.svg#arrow_right_1"></use></svg>
-            <span>Каталог</span>
+            <span>{ catalog_id }</span>
         </div>
         <div class="flex_row_start">
-            <a href="/system/catalog/cat/add" target="blank" class="ico_rectangle_container">
+            <a href="/system/catalog/section/add" target="blank" class="ico_rectangle_container">
                 <svg><use xlink:href="/templates/system/svg/sprite.svg#folder_add"></use></svg>
                 <div class="ico_rectangle_text">Добавить раздел</div>
             </a>
-            <a href="/system/catalod/item/add" target="blank" class="ico_rectangle_container">
+            <a href="/system/section/item_add" target="blank" class="ico_rectangle_container">
                 <svg><use xlink:href="/templates/system/svg/sprite.svg#paper_add"></use></svg>
                 <div class="ico_rectangle_text">Добавить элемент</div>
             </a>
-            <a href="/system/catalod/help" target="blank" class="ico_rectangle_container">
+            <a href="/system/section/help" target="blank" class="ico_rectangle_container">
                 <svg><use xlink:href="/templates/system/svg/sprite.svg#help"></use></svg>
                 <div class="ico_rectangle_text">Помощь</div>
             </a>

@@ -1,7 +1,9 @@
 from aiohttp import web
 import sys
 sys.path.append('system/catalog/cat')
+sys.path.append('system/catalog/section')
 from cat import cat
+from section import section
 
 
 def catalog(SITE):
@@ -10,14 +12,12 @@ def catalog(SITE):
     # Вызов функций по ключу
     functions = {
         '': cat,  # Управление каталогами
-        'cat': cat
-        # 'section': section,
+        'cat': cat,
+        'section': section
         # 'item': item,
         # 'settings': settings,
         # 'char': char
     }
-
-    print('SITE.p[1] = ', SITE.p[1])
 
     if (SITE.p[1] not in functions):
         # Если функция не существует - 404

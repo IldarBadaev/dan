@@ -23,6 +23,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 CREATE TABLE `sections` (
   `id` int(10) UNSIGNED NOT NULL,
   `catalog_id` int(10) UNSIGNED NOT NULL,
+  `parent_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `image` varchar(50) NOT NULL,
   `serialized` longtext NOT NULL,

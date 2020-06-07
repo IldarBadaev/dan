@@ -2,9 +2,9 @@ class Catalog:
     def __init__(self, SITE):
         self.db = SITE.db
 
-    def getItem(self, id, select='*'):
-        sql = "SELECT %s FROM component WHERE id = %s"
-        self.db.execute(sql, select, id)
+    def getItem(self, id):
+        sql = "SELECT * FROM component WHERE id = %s"
+        self.db.execute(sql, id)
         return self.db.fetchone()
 
     def getItems(self):
@@ -80,8 +80,11 @@ class Catalog:
         sql = "UPDATE component SET `settings` = %s WHERE id = %s"
         return self.db.execute(sql, (settings, id))
 
-    def getSections(self, catalog_id, select='*'):
-        sql = "SELECT %s FROM sections WHERE catalog_id = %s ORDER BY ordering"
-        self.db.execute(sql, (select, catalog_id))
+    def getSections(self, catalog_id, short=True):
+        if short:
+            sql = "SELECT id, parent_id, name, status FROM sections WHERE catalog_id = %s ORDER BY ordering"
+        else:
+            sql = "SELECT * FROM sections WHERE catalog_id = %s ORDER BY ordering"
+        self.db.execute(sql, catalog_id)
         rows = self.db.fetchall()
         return rows if len(rows) > 0 else False

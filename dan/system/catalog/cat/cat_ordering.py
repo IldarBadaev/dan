@@ -3,7 +3,7 @@ import sys
 sys.path.append('system/catalog/classes')
 
 
-def ordering(SITE):
+def cat_ordering(SITE):
     print('FUNCTION -> system-> calalog -> cat -> ordering')
     type = SITE.p[2]
     id = SITE.p[3]

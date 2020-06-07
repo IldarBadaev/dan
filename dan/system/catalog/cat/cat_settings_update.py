@@ -3,7 +3,7 @@ import sys
 sys.path.append('system/catalog/classes')
 
 
-def settings_update(SITE):
+def cat_settings_update(SITE):
     print('FUNCTION -> system-> calalog -> cat -> settings_update')
     
     CATALOG = Catalog(SITE)

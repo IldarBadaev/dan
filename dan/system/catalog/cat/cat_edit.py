@@ -3,13 +3,14 @@ import sys
 sys.path.append('system/catalog/classes')
 
 
-def edit(SITE):
+def cat_edit(SITE):
     print('FUNCTION -> system_> calalog -> cat -> edit')
 
     CATALOG = Catalog(SITE)
 
     if SITE.p[2] == 'edit':
         catalog = CATALOG.getItem(SITE.p[3])
+        print('8888888888888888888', catalog)
         title = 'Редактировать каталог'
         action = 'update/' + SITE.p[3]
     else:

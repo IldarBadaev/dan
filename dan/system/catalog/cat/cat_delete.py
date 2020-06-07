@@ -3,7 +3,7 @@ import sys
 sys.path.append('system/catalog/classes')
 
 
-def delete(SITE):
+def cat_delete(SITE):
     print('FUNCTION -> system-> calalog -> cat -> delete')
 
     if 'agree' in SITE.post and SITE.post['agree'] == 'yes':
