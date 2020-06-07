@@ -25,8 +25,8 @@ class Catalog:
         return self.db.fetchone()
 
     def insert(self, data):
-        sql = "INSERT INTO component SET component = 'catalog', `url` = %s, `name` = %s, settings = '', ordering = 7"
-        return self.db.execute(sql, (data['url'], data['name']))
+        sql = "INSERT INTO component SET component = 'catalog', `url` = %s, `name` = %s, settings = '', ordering = %s"
+        return self.db.execute(sql, (data['url'], data['name'], data['ordering']))
 
     def update(self, data):
         sql = "UPDATE component SET `url` = %s, `name` = %s, ordering = %s WHERE id = %s"

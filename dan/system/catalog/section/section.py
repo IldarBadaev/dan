@@ -2,9 +2,9 @@ from aiohttp import web
 import sys
 sys.path.append('system/catalog/section')
 from section_edit import section_edit
-#from insert import insert
+from section_insert import section_insert
 #from cat_list import cat_list
-#from update import update
+from section_update import section_update
 #from ordering import ordering
 #from delete import delete
 #from settings_edit import settings_edit
@@ -18,9 +18,9 @@ def section(SITE):
     # Вызов функций по ключу
     functions = {
         'add': section_edit,
-        # 'edit': edit,
-        # 'insert': insert,
-        # 'update': update,
+        'edit': section_edit,
+        'insert': section_insert,
+        'update': section_update,
         # 'up': ordering,
         # 'down': ordering,
         # 'delete': delete,

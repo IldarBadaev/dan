@@ -28,7 +28,7 @@ def cat_sec_list(SITE):
                     </div>
                 </td>
                 <td>
-                    <a href="/system/catalog/cat/{ row['id'] }">{ level }{ row['name'] }</a>
+                    <a href="/system/catalog/section/{ row['id'] }">{ level }{ row['name'] }</a>
                 </td>
             </tr>
             '''
@@ -37,7 +37,7 @@ def cat_sec_list(SITE):
     SITE.content += f'''<div class="bg_gray">
         <script>window.addEventListener("DOMContentLoaded", function(){{
         var contextmenu_catalog = [
-            ["system/catalog/section/edit", "contextmenu_edit", "Редактировать каталог"],
+            ["system/catalog/section/edit", "contextmenu_edit", "Редактировать раздел"],
             ["system/catalog/section/up", "contextmenu_up", "Вверх"],
             ["system/catalog/section/down", "contextmenu_down", "Вниз"],
             ["system/catalog/section/pub", "contextmenu_pub", "Опубликовать"],
@@ -53,11 +53,11 @@ def cat_sec_list(SITE):
             <span>{ catalog_id }</span>
         </div>
         <div class="flex_row_start">
-            <a href="/system/catalog/section/add" target="blank" class="ico_rectangle_container">
+            <a href="/system/catalog/section/add/{ catalog_id }" target="blank" class="ico_rectangle_container">
                 <svg><use xlink:href="/templates/system/svg/sprite.svg#folder_add"></use></svg>
                 <div class="ico_rectangle_text">Добавить раздел</div>
             </a>
-            <a href="/system/section/item_add" target="blank" class="ico_rectangle_container">
+            <a href="/system/section/item_add/" target="blank" class="ico_rectangle_container">
                 <svg><use xlink:href="/templates/system/svg/sprite.svg#paper_add"></use></svg>
                 <div class="ico_rectangle_text">Добавить элемент</div>
             </a>

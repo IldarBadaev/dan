@@ -26,7 +26,8 @@ CREATE TABLE `sections` (
   `parent_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `image` varchar(50) NOT NULL,
-  `serialized` longtext NOT NULL,
+  `text` longtext NOT NULL,
+  `data` text NOT NULL,
   `date` datetime NOT NULL,
   `status` int(3) NOT NULL,
   `ordering` int(11) NOT NULL

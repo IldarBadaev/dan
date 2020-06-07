@@ -33,7 +33,7 @@ async def system_r(request):
     r = system.router(SITE)
 
     if r and 'redirect' in r:
-        return web.HTTPFound('/system/catalog/cat')
+        return web.HTTPFound(r['redirect'])
 
     auth = 1
 

@@ -10,7 +10,6 @@ def cat_edit(SITE):
 
     if SITE.p[2] == 'edit':
         catalog = CATALOG.getItem(SITE.p[3])
-        print('8888888888888888888', catalog)
         title = 'Редактировать каталог'
         action = 'update/' + SITE.p[3]
     else:
@@ -44,7 +43,7 @@ def cat_edit(SITE):
 					</div>
 				</div>
 				<div class="flex_row p_5_20">
-					<div class="tc_item_l">URL адрес каталога</div>
+					<div class="tc_item_l">Порядок следования</div>
 					<div class="tc_item_r flex_grow">
 						<input class="input" name="ordering" type="number" value="''' + str(catalog['ordering']) + '''">
 					</div>
