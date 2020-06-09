@@ -11,6 +11,15 @@
 {{ head | safe }}
 </head>
 <body>
+	{% if AUTH == 1 %}
+		<div class="form_auth">
+			<form method="post" action="/system/login">
+				<div><input class="input" type="email" name="email" placeholder="email"></div>
+				<div><input class="input" type="password" name="psw" placeholder="password" required></div>
+				<div><input class="form_auth_submit" type="submit" name="submit" value="Вход"></div>
+			</form>
+		</div>
+	{% else %}
 	<header>
 		<div>
 			<a href="/system/" class="header_block">
@@ -27,22 +36,12 @@
 		</div>
 	</header>
     <section>
-		{% if AUTH != 1 %}
-			<div>
-				<form method="post" action="/system/login">
-					<div><input type="email" name="email" placeholder="email"></div>
-					<div><input type="password" name="psw" placeholder="email"></div>
-					<div><input type="submit" name="submit" value="Вход"></div>
-				</form>
-			</div>
-		{% else %}
-			{{ content | safe }}
-		{% endif %}
+		{{ content | safe }}
     </section>
     <footer>
         <div> </div>
     </footer>
-
+	{% endif %}
 </body>
 
 <body>
