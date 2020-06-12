@@ -8,9 +8,13 @@ class Section:
         self.db.execute(sql, id)
         return self.db.fetchone()
 
-    def getSectionsByCatalogId(self, catalog_id):
-        sql = "SELECT `id`, `parent_id`, `name`, `text`, `data`, `status` FROM sections WHERE catalog_id = %s ORDER BY ordering"
-        self.db.execute(sql, catalog_id)
+    def getSectionsByCatalogId(self, catalog_id, parent_id = False):
+        if parent_id:
+            sql = "SELECT `id`, `parent_id`, `name`, `text`, `data`, `status` FROM sections WHERE catalog_id = %s AND parent_id = %s ORDER BY ordering"
+            self.db.execute(sql, catalog_id, parent_id)
+        else:
+            sql = "SELECT `id`, `parent_id`, `name`, `text`, `data`, `status` FROM sections WHERE catalog_id = %s ORDER BY ordering"
+            self.db.execute(sql, catalog_id)
         rows = self.db.fetchall()
         return rows if len(rows) > 0 else False
 
@@ -37,6 +41,89 @@ class Section:
             data['ordering'],
             data['id']
         ))
+
+    def ordering(self, type, id):
+        # АЛГОРИТМ РАБОТЫ
+        # 1. Находим id каталога по id раздела
+        # 2. Создаём список list_id c id и находим порядковый индекс нашего элемента - n
+        # 3. Если тип UP - ставим - меняем местами с предыдущим id
+        # 4. Если тип DOWN - меняем местами с последующим id
+        # Записываем id в БД
+
+        # 1. Находим id каталога по id раздела
+        section = self.getSection(id)
+
+        # Получаем список id каталогов
+        rows = self.getSectionsByCatalogId(section['catalog_id'], section['parent_id'])
+        list_id = []
+        i = n = 0
+
+        # 2. Создаём новый список list_1
+        for row in rows:
+            list_id.append(row['id'])
+            if (int(row['id']) == int(id)):
+                n = i
+            i += 1
+
+        # 3. Если тип UP
+        if type == 'up':
+            if (n) > 0:
+                prev = list_id[n-1]
+                list_id[n-1] = int(id)
+                list_id[n] = prev
+
+        # 4. Если тип DOWN
+        if type == 'down':
+            if (n < len(list_id) - 1):
+                next = list_id[n+1]
+                list_id[n+1] = int(id)
+                list_id[n] = next
+
+        for ordering in range(len(list_id)):
+            sql = "UPDATE sections SET ordering = %s WHERE id = %s"
+            self.db.execute(sql, (ordering + 1, list_id[ordering]))
+
+        return section['catalog_id']
+    
+    def pub(self, type, id):
+        status_dict = {
+            'pub': 1, 
+            'unpub': 0
+        }
+
+        status = status_dict[type]
+
+        sql = "UPDATE sections SET `status` = %s WHERE id = %s"
+        self.db.execute(sql, (status, id))
+
+        return self.getSection(id)['catalog_id']
+    
+    def delete(self, id):
+        cat_id = self.getSection(id)['catalog_id']
+        rows_all = self.tree(cat_id)
+
+        curent_level = 1000
+        rows_delete = []
+        for row in rows_all:
+            if int(row['id']) == int(id):
+                # Если это текущий раздел, запоминаем уровень
+                curent_level = row['level']
+                rows_delete.append(row['id'])
+                continue
+            
+            if row['level'] > curent_level:
+                 # Если опустились ниже на дочерние пункты
+                rows_delete.append(row['id'])
+            else:
+                # Если поднялись до текущего уровня - это означает, что мы прошли все дочерние пункты, сбрасываем curent_level
+                curent_level = 1000
+
+        for delete_id in rows_delete:
+            sql = "DELETE FROM sections WHERE id = %s"
+            self.db.execute(sql, delete_id)
+    
+        return cat_id
+
 
     def tree(self, catalog_id):
         rows = self.getSectionsByCatalogId(catalog_id)

@@ -18,7 +18,11 @@ def cat_sec_list(SITE):
     if (rows):
         for row in rows:
             level = '&nbsp;-&nbsp;' * row['level']
-            row_out += f''' <tr>
+            status_tr_class = ''
+            if row['status'] == 0:
+                status_tr_class = 'class="admin_table_tr_unpub"' 
+
+            row_out += f''' <tr { status_tr_class }>
                 <td>{ i }</td>
                 <td>
                     <div class="flex_row contextmenu_wrap">
@@ -41,7 +45,7 @@ def cat_sec_list(SITE):
             ["system/catalog/section/up", "contextmenu_up", "Вверх"],
             ["system/catalog/section/down", "contextmenu_down", "Вниз"],
             ["system/catalog/section/pub", "contextmenu_pub", "Опубликовать"],
-            ["system/catalog/section/unpub", "contextmenu_down", "Скрыть"],
+            ["system/catalog/section/unpub", "contextmenu_unpub", "Скрыть"],
             ["#SYSTEM.section.delete_modal", "contextmenu_delete", "Удалить раздел"]
         ];
         CONTEXTMENU.add("contextmenu_ico", contextmenu_catalog, "left");

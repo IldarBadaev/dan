@@ -23,7 +23,7 @@ def section_edit(SITE):
         action = 'insert'
         # ordering = SECTION.getMaxOrdering() + 1
         ordering = 1
-        section = {'id': 0, 'name': '', 'text': '', 'data': '', 'status': 1, 'ordering': ordering}
+        section = {'id': 0, 'parent_id': 0, 'name': '', 'text': '', 'data': '', 'status': 1, 'ordering': ordering}
 
     rows = SECTION.tree(catalog_id)
     sec_options = ''

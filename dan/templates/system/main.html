@@ -11,7 +11,7 @@
 {{ head | safe }}
 </head>
 <body>
-	{% if AUTH == 1 %}
+	{% if AUTH != 1 %}
 		<div class="form_auth">
 			<form method="post" action="/system/login">
 				<div><input class="input" type="email" name="email" placeholder="email"></div>

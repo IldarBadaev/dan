@@ -39,10 +39,6 @@ class Catalog:
         # 3. Если тип DOWN - меняем местами с последующим id
         # Записываем id в БД
 
-        # 1. Создаём новый список list_1, в котором у нас есть все элементы, за исключением перемещаемого элемента
-        # 2. Создаем список list_2, у которого все элементы до 'ordering' = list_1, на 'ordering' - вставляем наш перемещаемый элемент, после list_1 = list_2(i-1);
-        # Перебираем list_2(i) и ставим 'ordering' = i + 1; Записываем в БД
-
         rows = self.getItems()  # Получаем список id каталогов
         list_id = []
         i = n = 0
@@ -61,7 +57,7 @@ class Catalog:
                 list_id[n-1] = int(id)
                 list_id[n] = prev
 
-        # 2. Если тип DOWN
+        # 3. Если тип DOWN
         if type == 'down':
             if (n < len(list_id) - 1):
                 next = list_id[n+1]

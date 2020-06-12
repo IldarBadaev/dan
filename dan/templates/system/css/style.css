@@ -285,7 +285,7 @@ a.header_block:hover, .header_block:hover{
     margin-left: -10px;
 }
 
-a.admin_table_tr_unpub, .admin_table_tr_unpub {
+a.admin_table_tr_unpub, .admin_table_tr_unpub a, .admin_table_tr_unpub {
     color: #bbb !important;
 }
 
