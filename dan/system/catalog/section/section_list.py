@@ -14,7 +14,7 @@ def section_list(SITE):
     section = SECTION.getSection(section_id)
     catalog = CATALOG.getItem(section['catalog_id'])
 
-    row_out = '<tr><td>* * * * *<td><tr>'
+    row_out = '<tr><td>* * ТЕСТ * *<td><tr>'
 
     SITE.content += f'''<div class="bg_gray">
         <script>window.addEventListener("DOMContentLoaded", function(){{
